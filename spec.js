@@ -21,7 +21,7 @@ describe ('Ticto', () => {
         let faturamento1 = $('#faturamento-1')
 
         browser.get('http://www.ticto.com.br').then(() => {
-            expect(registerbutton.isPresent()).not.toBe(true);
+            expect(registerbutton.isPresent()).toBe(true);
 
             registerbutton.click();
 
