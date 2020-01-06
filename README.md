@@ -1,6 +1,6 @@
 # Protractor Tests - Ticto
 
-## **Instalação**
+### **Instalação**
 
 Primeiramente, execute o arquivo `package.json` para que seja possível instalar o [Protractor](https://www.protractortest.org/) e todas as suas dependências:
 
@@ -12,7 +12,7 @@ O `webdriver-manager` é uma ferramenta para obter facilmente uma instância de 
 
 `webdriver-manager update`
 
-## **Execução**
+### **Execução**
 Para iniciar o servidor, execute:
 
 `webdriver-manager start`
@@ -27,12 +27,12 @@ Para rodar os testes, execute o comando:
 
 Para mais informações sobre a criação e execução dos testes, acesse a página de [Tutorial](https://www.protractortest.org/#/tutorial) do Protractor.
 
-## **Teste na nuvem com Browserstack**
+### **Teste na nuvem com Browserstack**
 É necessário criar uma conta no [Browserstack](https://www.browserstack.com/) para executar os testes
 
 Dentro da pasta `/conf` existe 4 arquivos: `local.conf.js` (para testes locais), `single.conf.js` (para testes simples), `parallel_local.conf.js` (para testes paralelos locais), `parallel.conf.js` (para testes paralelos).
 
-## **Execução do teste na nuvem**
+### **Execução do teste na nuvem**
 
 Para rodar os testes na nuvem, execute o comando:
 
