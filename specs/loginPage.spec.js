@@ -6,7 +6,7 @@ let LoginPage = require('../page-objects/loginPage.po');
 describe ('Login App Ticto', () => {
 
     it('should login app', () => {
-        var loginPage = new LoginPage();
+        let loginPage = new LoginPage();
         
         let email = login.user, 
             password = login.password;
