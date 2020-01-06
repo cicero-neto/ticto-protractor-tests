@@ -19,6 +19,7 @@
   "homepage": "https://github.com/cicero-neto/ticto-protractor-tests#readme",
   "devDependencies": {
     "jasmine-spec-reporter": "^4.2.1",
-    "protractor": "^5.4.2"
+    "protractor": "^5.4.2",
+    "protractor-jasmine2-html-reporter": "0.0.7"
   }
 }

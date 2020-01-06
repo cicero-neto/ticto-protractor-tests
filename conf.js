@@ -8,14 +8,20 @@ exports.config = {
             'password': ''
         }
     },
-    onPrepare: function() {
+    onPrepare: function () {
         let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+        let Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 
         jasmine.getEnv().addReporter(new SpecReporter({
             displayFailuresSummary: true,
             displayFailedSpec: true,
             displaySuiteNumber: true,
             displaySpecDuration: true
+        }));
+
+        jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
+            takeScreenshots: true,
+            fixedScreenshotName: true
         }));
     }
 }
