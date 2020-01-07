@@ -10,7 +10,12 @@ exports.config = {
     'name': 'local_test',
     'browserName': 'chrome',
     'browserstack.local': true,
-    'browserstack.debug': 'true'
+    'browserstack.debug': 'true',
+    'os' : 'OS X',
+    'os_version' : 'Mojave',
+    'browserName' : 'Safari',
+    'browser_version' : '12.0',
+    'resolution' : '1280x960',
   },
 
   // Code to start browserstack local before start of test
