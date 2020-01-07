@@ -21,7 +21,9 @@ exports.config = {
 
         jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
             takeScreenshots: true,
-            fixedScreenshotName: true
+            fixedScreenshotName: true,
+            savePath: './test/reports/',
+            screenshotsFolder: 'images'
         }));
     }
 }
