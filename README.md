@@ -30,7 +30,7 @@ Para mais informações sobre a criação e execução dos testes, acesse a pág
 ### **Teste na nuvem com Browserstack**
 É necessário criar uma conta no [Browserstack](https://www.browserstack.com/) para executar os testes
 
-Dentro da pasta `/conf` existe 4 arquivos: `local.conf.js` (para testes locais), `single.conf.js` (para testes simples), `parallel_local.conf.js` (para testes paralelos locais), `parallel.conf.js` (para testes paralelos).
+Dentro da pasta `/conf` existem 4 arquivos: `local.conf.js` (para testes locais), `single.conf.js` (para testes simples), `parallel_local.conf.js` (para testes paralelos locais), `parallel.conf.js` (para testes paralelos).
 
 ### **Execução do teste na nuvem**
 
