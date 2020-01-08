@@ -42,4 +42,4 @@ Para rodar os testes na nuvem, execute o comando:
 
 `protractor conf/[nome do arquivo].conf.js`
 
-Os arquivos são baseados nos [arquivos](https://github.com/browserstack/protractor-browserstack) do GitHub da Browserstack.
+Os testes são baseados nos [arquivos](https://github.com/browserstack/protractor-browserstack) do GitHub da Browserstack.
