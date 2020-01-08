@@ -8,6 +8,11 @@ exports.config = {
             'password': ''
         }
     },
+    suites: {
+        login: 'specs/loginPage.spec.js',
+        checkout: 'specs/checkout.spec.js',
+        home: 'specs/homePage.spec.js'
+    },
     onPrepare: function () {
         let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
         let Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
