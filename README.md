@@ -17,9 +17,13 @@ Para iniciar o servidor, execute:
 
 `webdriver-manager start`
 
-Para rodar os testes, execute o comando:
+Para rodar todos os testes, execute o comando:
 
 `protractor conf.js`
+
+Para rodar uma suíte de teste, execute o comando:
+
+`protractor conf.js --suite nomeDaSuite`
 
 É possível passar os parâmetros de usuário e senha através do comando:
 
