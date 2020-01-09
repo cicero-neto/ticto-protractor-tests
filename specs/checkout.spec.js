@@ -4,14 +4,7 @@ let Checkout = require('../page-objects/checkout.po');
 
 describe ('New Checkout', () => {
     browser.manage().timeouts().implicitlyWait(5000);
-
-    it('try to submit personal data form', () => {
-        Checkout.visit('https://payb.ticto.com.br/c/43E771ED');
-
-        Checkout.personalDataForm('John Doe', 'john.doe@', '123456789', '12345678901');
-
-        expect($('.invalid-feedback').isPresent()).toBe(true);
-    });
+    browser.driver.manage().window().maximize();
 
     it('try to submit personal data form and go to Payment tab', () => {
         Checkout.visit('https://payb.ticto.com.br/c/43E771ED');
@@ -23,13 +16,29 @@ describe ('New Checkout', () => {
         expect(title.getText()).toContain('Pagamento')
     });
 
-    it('try to submit payment data form with invalid credit card brand', () => {
+    it('try to input and submit credit card info', () => {
+        Checkout.creditCardInfo('4484 8484 8484 8481', 'John Doe', '04', '2020', '123');
+        browser.sleep(2000);
+    });
+
+    it('should have invalid credit card brand message', () => {
         let invalidCardBrandMessage = 'Cartão com bandeira inválida, confira o número e tente novamente!'
-
-        Checkout.creditCardInfo('8484848484848484', 'John Doe', '03', '2020', '123');
-        browser.sleep(2000)
-
         expect($('.iziToast-capsule').getText()).toContain(invalidCardBrandMessage)
+    });
+
+    it('should have recaptcha message', () => {
+        let recaptchaMessage = 'Você deve comprovar que não é um robô'
+        expect($('.iziToast-capsule').getText()).toContain(recaptchaMessage)
+    });
+
+    it('should have unauthorized transaction', () => {
+        let recaptchaMessage = 'Transação não autorizada. Transação não permitida para o cartão.'
+        expect($('.iziToast-capsule').getText()).toContain(recaptchaMessage)
+    });
+
+    it('should have successful message', () => {
+        let successfulMessage = 'Sua Compra foi efetuada com sucesso!'
+        expect($('.text .mx-2').getText()).toContain(successfulMessage)
     });
 });
 
