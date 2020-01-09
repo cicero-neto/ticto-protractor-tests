@@ -16,7 +16,6 @@ Checkout.prototype.personalDataForm = (name, email, phoneNumber, document) => {
     $('#autocomplete-results li:first-child').click()
     phoneNumberField.sendKeys(phoneNumber);
     documentField.sendKeys(document);
-    browser.driver.sleep(2000);
     submitButton.click();
 }
 
@@ -27,15 +26,15 @@ Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSe
     let yearField = element(by.tagName("select#year"));
     let cardSecurityField = $('#cardSecurity');
 
-    let submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(4) > div > div > div.credit-card > div > div:nth-child(5) > button > span');
-
+    let submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(4) > div > div > div.credit-card > div > div:nth-child(4) > button');
+    
     cardNumberField.sendKeys(cardNumber);
     holderNameField.sendKeys(holderName);
     monthField.click();
     browser.driver.sleep(2000);
     element(by.css("#month [value='03']")).click();
     yearField.click();
-    browser.sleep(1000)
+    browser.sleep(1000);
     element(by.css("#year [value='2020']")).click();
     cardSecurityField.sendKeys(cardSecurity);
 
