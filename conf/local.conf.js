@@ -18,6 +18,12 @@ exports.config = {
     'resolution' : '1280x960',
   },
 
+  suites: {
+    login: '../specs/loginPage.spec.js',
+    checkout: '../specs/checkout.spec.js',
+    home: '../specs/homePage.spec.js'
+},
+
   // Code to start browserstack local before start of test
   beforeLaunch: function(){
     console.log("Connecting local");
