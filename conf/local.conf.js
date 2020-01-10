@@ -1,35 +1,35 @@
 var browserstack = require('browserstack-local');
 
 exports.config = {
-  'specs': [ '../specs/loginPage.spec.js' ],
+  'specs': ['../specs/loginPage.spec.js'],
   'browserstackUser': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
   'browserstackKey': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-  
+
   'capabilities': {
     'build': 'protractor-browserstack',
     'name': 'local_test',
     'browserName': 'chrome',
     'browserstack.local': true,
     'browserstack.debug': 'true',
-    'os' : 'OS X',
-    'os_version' : 'Mojave',
-    'browserName' : 'Safari',
-    'browser_version' : '12.0',
-    'resolution' : '1280x960',
+    'os': 'OS X',
+    'os_version': 'Mojave',
+    'browserName': 'Safari',
+    'browser_version': '12.0',
+    'resolution': '1280x960',
   },
 
   suites: {
     login: '../specs/loginPage.spec.js',
     checkout: '../specs/checkout.spec.js',
     home: '../specs/homePage.spec.js'
-},
+  },
 
   // Code to start browserstack local before start of test
-  beforeLaunch: function(){
+  beforeLaunch: function () {
     console.log("Connecting local");
-    return new Promise(function(resolve, reject){
+    return new Promise(function (resolve, reject) {
       exports.bs_local = new browserstack.Local();
-      exports.bs_local.start({'key': exports.config['browserstackKey'] }, function(error) {
+      exports.bs_local.start({ 'key': exports.config['browserstackKey'] }, function (error) {
         if (error) return reject(error);
         console.log('Connected. Now testing...');
 
@@ -39,8 +39,8 @@ exports.config = {
   },
 
   // Code to stop browserstack local after end of test
-  afterLaunch: function(){
-    return new Promise(function(resolve, reject){
+  afterLaunch: function () {
+    return new Promise(function (resolve, reject) {
       exports.bs_local.stop(resolve);
     });
   }

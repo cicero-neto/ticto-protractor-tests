@@ -24,9 +24,12 @@ describe ('New Checkout', () => {
     });
 
     it('try to buy with billet and go to Thank You page', () => {
-        $('.payment-type .row div:first-child').click();
-        $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(4) > div > div > div.billet > div > div.col-12.col-md-6 > button').click()
-        
+        let billetTab = $('.payment-type .row div:first-child'),
+            billetPaymentButton = $('.billet .col-12 button.shadow-sm.mb-4.btn-block');
+
+        billetTab.click();
+        billetPaymentButton.click();
+
         let successfulMessage = 'SUA COMPRA FOI EFETUADA COM SUCESSO!';
         expect($('.text .mx-2').getText()).toContain(successfulMessage);
     });
