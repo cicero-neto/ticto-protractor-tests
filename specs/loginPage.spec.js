@@ -16,7 +16,7 @@ describe('Login App Ticto', () => {
 
         loginPage.visit();
 
-        loginPage.signIn(email, '');
+        loginPage.signIn(email, password = '');
 
         expect(passwordError.isPresent()).toBe(true);
         expect(passwordError.getText()).toContain(text);
@@ -32,7 +32,7 @@ describe('Login App Ticto', () => {
 
         loginPage.visit();
 
-        loginPage.signIn('', password);
+        loginPage.signIn(email = '', password);
 
         expect(emailError.isPresent()).toBe(true);
         expect(emailError.getText()).toContain(text);
@@ -47,8 +47,7 @@ describe('Login App Ticto', () => {
             emailError = $('.validation-message .error');
 
         loginPage.visit();
-
-        loginPage.signIn(email, 'password');
+        loginPage.signIn(email, password = 'password123');
 
         expect(emailError.isPresent()).toBe(true);
         expect(emailError.getText()).toContain(text);
