@@ -8,14 +8,12 @@ Checkout.prototype.personalDataForm = (name, email, phoneNumber, document) => {
     let nameField = $('input[name="name"]'),
         emailField = $('#email'),
         phoneNumberField = $('input[name="phoneNumber"]'),
-        documentField = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(3) > div > div > div:nth-child(4) > div > div:nth-child(7) > div > input');
-        submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(3) > div > div > div:nth-child(4) > div > div.col-12.col-md-6.mb-2.offset-md-6 > button');
+        documentField = $('.col-md-6 input[name="documentNumber"]');
 
     nameField.sendKeys(name);
     emailField.sendKeys(email).sendKeys(protractor.Key.ENTER);
     phoneNumberField.sendKeys(phoneNumber);
     documentField.sendKeys(document);
-    submitButton.click();
 }
 
 Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSecurity) => {
@@ -24,7 +22,7 @@ Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSe
         monthField = element(by.tagName("select#month")),
         yearField = element(by.tagName("select#year")),
         cardSecurityField = $('#cardSecurity'),
-        submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(4) > div > div > div.credit-card > div > div:nth-child(4) > button');
+        submitButton = $('.credit-card button');
     
     cardNumberField.sendKeys(cardNumber);
     holderNameField.sendKeys(holderName);
@@ -39,7 +37,7 @@ Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSe
 
 Checkout.prototype.billetTab = () => {
     let billetTab = $('.payment-type .row div:first-child'),
-        billetPaymentButton = $('.billet .col-12 button.shadow-sm.mb-4.btn-block');
+        billetPaymentButton = $('.billet .col-12 button');
 
         billetTab.click();
         billetPaymentButton.click();
