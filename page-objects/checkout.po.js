@@ -12,8 +12,7 @@ Checkout.prototype.personalDataForm = (name, email, phoneNumber, document) => {
         submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(3) > div > div > div:nth-child(4) > div > div.col-12.col-md-6.mb-2.offset-md-6 > button');
 
     nameField.sendKeys(name);
-    emailField.sendKeys(email);
-    $('#autocomplete-results li:first-child').click()
+    emailField.sendKeys(email).sendKeys(protractor.Key.ENTER);
     phoneNumberField.sendKeys(phoneNumber);
     documentField.sendKeys(document);
     submitButton.click();
@@ -36,6 +35,14 @@ Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSe
     cardSecurityField.sendKeys(cardSecurity);
 
     submitButton.click();
+}
+
+Checkout.prototype.billetTab = () => {
+    let billetTab = $('.payment-type .row div:first-child'),
+        billetPaymentButton = $('.billet .col-12 button.shadow-sm.mb-4.btn-block');
+
+        billetTab.click();
+        billetPaymentButton.click();
 }
 
 module.exports = new Checkout();
