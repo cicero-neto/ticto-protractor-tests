@@ -5,10 +5,10 @@ Checkout.prototype.visit = (url) => {
 };
 
 Checkout.prototype.personalDataForm = (name, email, phoneNumber, document) => {
-    let nameField = $('input[name="name"]'),
-        emailField = $('#email'),
-        phoneNumberField = $('input[name="phoneNumber"]'),
-        documentField = $('.col-md-6 input[name="documentNumber"]');
+    let nameField = $('#name-desktop'),
+        emailField = $('#email-desktop'),
+        phoneNumberField = $('#phone-desktop'),
+        documentField = $('#document-desktop');
 
     nameField.sendKeys(name);
     emailField.sendKeys(email).sendKeys(protractor.Key.ENTER);
@@ -17,8 +17,8 @@ Checkout.prototype.personalDataForm = (name, email, phoneNumber, document) => {
 }
 
 Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSecurity) => {
-    let cardNumberField = $('#cardNumber'),
-        holderNameField = $('input[name="holderName"]'),
+    let cardNumberField = $('#cardnumber-desktop'),
+        holderNameField = $('#holdername-desktop'),
         monthField = element(by.tagName("select#month")),
         yearField = element(by.tagName("select#year")),
         cardSecurityField = $('#cardSecurity'),
@@ -37,7 +37,7 @@ Checkout.prototype.creditCardInfo = (cardNumber, holderName, month, year, cardSe
 
 Checkout.prototype.billetTab = () => {
     let billetTab = $('.payment-type .row div:first-child'),
-        billetPaymentButton = $('.billet .col-12 button');
+        billetPaymentButton = $('#billet-submit-btn');
 
         billetTab.click();
         billetPaymentButton.click();

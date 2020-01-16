@@ -8,14 +8,15 @@ describe('New Checkout', () => {
 
     describe('With Billet Payment', () => {
         it('try to submit personal data form and go to Payment tab', () => {
-            Checkout.visit('https://payb.ticto.com.br/c/A33602F7');
+            Checkout.visit('http://dev.pay2.ticto.com.br/c/A1BF8076');
 
             let title = $('.steps-desktop .active p');
+            let submitPersonalDataButton = $('#validate-personal-btn');
+
             expect(title.getText()).toContain('Dados');
-            let submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(3) > div > div > div:nth-child(4) > div > div.col-12.col-md-6.mb-2.offset-md-6 > button');
 
             Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
-            submitButton.click();
+            submitPersonalDataButton.click();
 
             expect(title.getText()).toContain('Pagamento');
         });
@@ -29,65 +30,97 @@ describe('New Checkout', () => {
     });
 
     describe('With Credit Card Payment', () => {
-        it('try to submit personal data form and go to Payment tab', () => {
-            Checkout.visit('https://payb.ticto.com.br/c/A33602F7');
-
-            let title = $('.steps-desktop .active p');
-            expect(title.getText()).toContain('Dados');
-
-            let submitButton = $('#personal-data > div > div > div > div.col-sm-12.col-lg-8.remove-padding.background-form.shadow.border-style > div > div:nth-child(3) > div > div > div:nth-child(4) > div > div.col-12.col-md-6.mb-2.offset-md-6 > button');
-
-            Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
-            submitButton.click();
-
-            expect(title.getText()).toContain('Pagamento');
+        describe('with unauthorized transaction message', () => {
+            it('try to submit personal data form and go to Payment tab', () => {
+                Checkout.visit('http://dev.pay2.ticto.com.br/c/A1BF8076');
+    
+                let title = $('.steps-desktop .active p');
+                let submitPersonalDataButton = $('#validate-personal-btn');
+    
+                expect(title.getText()).toContain('Dados');
+    
+                Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
+                submitPersonalDataButton.click();
+    
+                expect(title.getText()).toContain('Pagamento');
+            });
+    
+            it('try to input and submit credit card info', () => {
+                Checkout.creditCardInfo('4484 8484 8484 8481', 'John Doe', '04', '2020', '123');
+                browser.sleep(2000);
+            });
+    
+            it('should have unauthorized transaction', () => {
+                let unauthorizedTransactionMessage = 'Transação não autorizada. Oriente o portador a entrar em contato com o banco emissor';
+                browser.sleep(2000);
+                expect($('.iziToast-wrapper .iziToast-capsule').getText()).toContain(unauthorizedTransactionMessage)
+            });
         });
 
-        it('try to input and submit credit card info and go to Thank You page', () => {
-            Checkout.creditCardInfo('4484 8484 8484 8481', 'John Doe', '04', '2020', '123');
-            browser.sleep(2000);
+        describe('with invalid credit card brand message', () => {
+            it('try to submit personal data form and go to Payment tab', () => {
+                Checkout.visit('http://dev.pay2.ticto.com.br/c/A1BF8076');
     
-            let successfulMessage = 'SUA COMPRA FOI EFETUADA COM SUCESSO!';
-            expect($('.text .mx-2').getText()).toContain(successfulMessage);
+                let title = $('.steps-desktop .active p');
+                let submitPersonalDataButton = $('#validate-personal-btn');
+    
+                expect(title.getText()).toContain('Dados');
+    
+                Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
+                submitPersonalDataButton.click();
+    
+                expect(title.getText()).toContain('Pagamento');
+            });
+    
+            it('try to input and submit credit card info', () => {
+                Checkout.creditCardInfo('1484 8484 8484 8481', 'John Doe', '04', '2020', '123');
+                browser.sleep(2000);
+            });
+
+            it('should have invalid credit card brand message', () => {
+                let invalidCardBrandMessage = 'Cartão com bandeira inválida, confira o número e tente novamente!';
+                browser.sleep(2000);
+                expect($('.iziToast-wrapper .iziToast-capsule').getText()).toContain(invalidCardBrandMessage);
+            });
         });
     });
 
-    describe ('One Page Checkout with Credit Card Payment', () => {
-        it('try to fill personal data form and go to Payment section', () => {
-            Checkout.visit('https://payb.ticto.com.br/c/43E771ED');
+    // describe ('One Page Checkout with Credit Card Payment', () => {
+    //     it('try to fill personal data form and go to Payment section', () => {
+    //         Checkout.visit('https://payb.ticto.com.br/c/43E771ED');
     
-            Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
-        });
+    //         Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
+    //     });
 
-        it('try to input and submit credit card info and go to Thank You page', () => {
-            Checkout.creditCardInfo('4484 8484 8484 8481', 'John Doe', '04', '2020', '123');
-            browser.sleep(2000);
+    //     it('try to input and submit credit card info and go to Thank You page', () => {
+    //         Checkout.creditCardInfo('4484 8484 8484 8481', 'John Doe', '04', '2020', '123');
+    //         browser.sleep(2000);
 
-            let error = $('.invalid-feedback');
-            expect(error.isPresent()).toBe(true);
+    //         let error = $('.invalid-feedback');
+    //         expect(error.isPresent()).toBe(true);
 
-            let successfulMessage = 'SUA COMPRA FOI EFETUADA COM SUCESSO!';
-            expect($('.text .mx-2').getText()).toContain(successfulMessage);
-        });
-    });
+    //         let successfulMessage = 'SUA COMPRA FOI EFETUADA COM SUCESSO!';
+    //         expect($('.text .mx-2').getText()).toContain(successfulMessage);
+    //     });
+    // });
 
-    describe ('One Page Checkout with Billet Payment', () => {
-        it('try to fill personal data form and go to Payment section', () => {
-            Checkout.visit('https://payb.ticto.com.br/c/43E771ED');
+    // describe ('One Page Checkout with Billet Payment', () => {
+    //     it('try to fill personal data form and go to Payment section', () => {
+    //         Checkout.visit('https://payb.ticto.com.br/c/43E771ED');
 
-            let error = $('.invalid-feedback');
+    //         let error = $('.invalid-feedback');
     
-            Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
-            expect(error.isPresent()).toBe(false);
+    //         Checkout.personalDataForm('Cicero Neto', 'cicero.testeux@gmail.com', '12345678900', '01234567890');
+    //         expect(error.isPresent()).toBe(false);
     
-            // expect(title.getText()).toContain('Pagamento')
-        });
+    //         // expect(title.getText()).toContain('Pagamento')
+    //     });
 
-        it('try to input and submit billet info and go to Thank You page', () => {
-            Checkout.billetTab();
+    //     it('try to input and submit billet info and go to Thank You page', () => {
+    //         Checkout.billetTab();
 
-            let successfulMessage = 'SUA COMPRA FOI EFETUADA COM SUCESSO!';
-            expect($('.text .mx-2').getText()).toContain(successfulMessage);
-        });
-    });
+    //         let successfulMessage = 'SUA COMPRA FOI EFETUADA COM SUCESSO!';
+    //         expect($('.text .mx-2').getText()).toContain(successfulMessage);
+    //     });
+    // });
 });
