@@ -39,8 +39,8 @@ Checkout.prototype.billetTab = () => {
     let billetTab = $('.payment-type .row div:first-child'),
         billetPaymentButton = $('#billet-submit-btn');
 
-        billetTab.click();
-        billetPaymentButton.click();
+    billetTab.click();
+    billetPaymentButton.click();
 }
 
 module.exports = new Checkout();
