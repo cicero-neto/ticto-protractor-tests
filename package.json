@@ -20,7 +20,7 @@
   "devDependencies": {
     "browserstack-local": "^1.4.3",
     "jasmine-spec-reporter": "^4.2.1",
-    "protractor": "^5.4.2",
+    "protractor": "^7.0.0",
     "protractor-jasmine2-html-reporter": "0.0.7"
   }
 }
